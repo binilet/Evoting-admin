@@ -25,11 +25,14 @@ class register_party {
     protected $_logoName;
     protected $_logoPath;
     protected $_noOfCan;
-    protected $_ListOfConst;
-    protected $_ListOfPs;
+    protected $_ListOfConst;//this
+    protected $_ListOfPs;//this
     protected $_Objective;
-
-    function __construct() {
+    protected $connection;
+    
+    function __construct() {  
+        $p = new Connect();
+        $this->connection = $p->connect();
         
         if (isset($_POST['submit']) != null) {
             $this->_partyName = filter_input(INPUT_POST, 'partyName', FILTER_SANITIZE_STRING);
@@ -52,35 +55,49 @@ class register_party {
 
     public function evoting_registerParty() {
         try {
-            $p = new Connect();
-            $connection = $p->connect();
-
             $pname = $this->_partyName;
             $pcode = $this->_partyCode;
             $pregion = $this->_region;
             $plogoName = $this->_logoName;
             $plogoPath = $this->_logoPath;
-            $pnoOfCan = $this->_noOfCan;
-            $pListConst = $this->_ListOfConst;
-            $pListPs = $this->_ListOfPs;
+            $pnoOfCan = $this->_noOfCan;            
             $pobjective = $this->_Objective;
 
-
-            $query = "insert into evoting_party(ID,PARTY_NAME,PARTY_CODE,REGION,LOGO_NAME,LOGO_PATH,NO_OF_CAN,LIST_OF_CONST,LIST_OF_PS,OBJECTIVE)"
-                    . " values(0,'$pname','$pcode','$pregion','$plogoName','$plogoPath',$pnoOfCan,'$pListConst','$pListPs','$pobjective')";
-            mysqli_query($connection, $query) or die("envalid query: " . mysqli_error($connection));
-            if (mysqli_affected_rows($connection) >= 1) {
-                echo "<h2>rows got affected</h2>";
-            } else {
-                echo "some error";
-            }
+            $query = "insert into evoting_party(ID,PARTY_NAME,PARTY_CODE,TYPE,LOGO_NAME,LOGO_PATH,NO_OF_CAN,OBJECTIVE)"
+                    . " values(0,'$pname','$pcode','$pregion','$plogoName','$plogoPath',$pnoOfCan,'$pobjective')";
+            
+            mysqli_query($this->connection, $query) or die("envalid query: 71" . mysqli_error($this->connection));
+            $this->evoting_pname_con();
+            $this->evoting_pname_ps();
         } catch (Exception $ex) {
             echo 'Error Message: ' . $ex->getMessage();
         }
         $upload_image = new uploadImage();
         $upload_image->uploadLogo();
         header('Location: http://localhost/Evoting-admin/register.php');
-    }   
+    }  
+    
+    //this function will add party name with each its running constiutuencies 
+    public function evoting_pname_con(){
+        $pListConst = $this->_ListOfConst;
+        $pname = $this->_partyName;
+        
+        $myarray = explode(' ', $pListConst);
+        foreach($myarray as $val){
+            $query = "insert into vote_con(id,pname,con_code) values(0,'$pname','$val')";
+            mysqli_query($this->connection, $query) or die("Invalid Query: 95" . mysqli_error($this->connection));
+        }
+    }
+    //party_name with each its running pollstations into database
+    public function evoting_pname_ps(){
+        $pListPs = $this->_ListOfPs;
+        $pname = $this->_partyName;
+        $myarray = explode(' ', $pListPs);
+        foreach($myarray as $val){
+            $query = "insert into vote_ps(id,pname,ps_code) values(0,'$pname','$val')";
+            mysqli_query($this->connection, $query) or die("Invalid Query: 105". mysqli_error($this->connection));
+        }
+    }
 
 }
 
