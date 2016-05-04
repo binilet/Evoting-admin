@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="tester.php" method="post" enctype="multipart/form-data">
+            <input type="text" name="name" />
+            <textarea name="txtarea" cols="60" rows="10" id="txtarea"></textarea>
+            <input type="file" name="fileUpload" id="fileUpload" />
+            <input type="submit" name="submit" />
+            <table>
+                <thead>
+                    <tr>
+                        <th>Party Name</th>
+                        <th>Party Code</th>
+                        <th>Logo Name</th>
+                        <th># of Candidates</th>
+                        <th>action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php
+                    $p = new Connect();
+                    $connection = $p->connect();
+                    $sql = "SELECT * FROM evoting_party";
+                    $result = mysqli_query($connection, $sql) or die("envlalid query " . mysqli_error($connection));
+                    $rowsReturned = mysqli_affected_rows($connection);
+                    echo "<h1 style='color:red;'>" . $rowsReturned . " rows returned</h1>";
+                    while ($party = mysqli_fetch_row($result)) {
+                    echo "<tr class='odd gradeX'>";
+                    echo "<td>" . $party[1] . "</td>";
+                    echo "<td>" . $party[2] . "</td>";
+                    echo "<td>" . $party[4] . "</td>";
+                    echo "<td>" . $party[6] . "</td>";
+                    //for delete
+                    echo "<td class='center'><form action='delete_party.php' method='post'><button "
+                    . "type='submit' name='submit' class='btn btn-info' "
+                    . "value='" . $party[0] . "' data-toggle='modal' "
+                    . "data-target='#deleteModal'>Delete</button></form></td>";
+
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </form>
+
+        <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+        <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+        </script>
+    </body>
+</html>
