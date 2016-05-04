@@ -51,6 +51,13 @@ include "Connect.php";
     }else{
         echo "error";
     }
+    $val = "me you and her";
+    $d = array();
+    $real = explode(' ',$val);
+    foreach($real as $key){
+        echo "$real[$key]";
+    }
+    
     ?>
 <!DOCTYPE html>
 <!--
