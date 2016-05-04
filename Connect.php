@@ -15,6 +15,7 @@
  */
 //this comment is added to check the push capabilities of the netbeans to github
 //this comment is added from the lab computer inorder to check the synchronization ability of netbeans git service
+//this is git finall test comment
 class Connect {
     //put your code here
     protected $connection;   
