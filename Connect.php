@@ -13,6 +13,7 @@
  *
  * @author BiNI
  */
+//this comment is added to check the push capabilities of the netbeans to github
 class Connect {
     //put your code here
     protected $connection;   
