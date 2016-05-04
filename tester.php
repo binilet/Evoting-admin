@@ -52,10 +52,10 @@ include "Connect.php";
         echo "error";
     }
     $val = "me you and her";
-    $d = array();
+    //$d = array();
     $real = explode(' ',$val);
-    foreach($real as $key){
-        echo "$real[$key]";
+    foreach($real as $vals){
+        echo "<h1>$vals</h1>";
     }
     //comment
     ?>
