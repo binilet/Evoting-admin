@@ -273,48 +273,48 @@ if (isset($_SESSION['login']) !== true) {
                                                     <div class="form-group">
                                                         <label for="gender">Gender<em>*</em></label>
                                                         </br><input type="radio" name="gender" id="genMale" value="male" checked>Male</br>
-                                                            <input type="radio" name="gender" id="genFemale" value="female">Female
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="dob">Date of Birth<em>*</em></label>
-                                                                    <input type="date" name="dob" id="dob" class="form-control" />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="birthPlace">Birth Place<em>*</em></label>
-                                                                    <input type="text" class="form-control" name="birthPlace" id="birthPlace" placeholder="candidate birth place"/>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="eduLevel">Education Level<em>*</em></label>
-                                                                    <input type="text" class="form-control" name="eduLevel" id="eduLevel" placeholder="Education Level"/>
-                                                                </div>
+                                                         <input type="radio" name="gender" id="genFemale" value="female">Female
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="dob">Date of Birth<em>*</em></label>
+                                                        <input type="date" name="dob" id="dob" class="form-control" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="birthPlace">Birth Place<em>*</em></label>
+                                                        <input type="text" class="form-control" name="birthPlace" id="birthPlace" placeholder="candidate birth place"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="eduLevel">Education Level<em>*</em></label>
+                                                        <input type="text" class="form-control" name="eduLevel" id="eduLevel" placeholder="Education Level"/>
+                                                    </div>
 
-                                                                <div class="form-group">
-                                                                    <label for="uploadLogo">Party Logo<em>*</em></label>
-                                                                    <label class="btn btn-info" for="my-file-selector">
-                                                                        <input id="my-file-selector" type="file" name="pht" style="display:none;">
-                                                                            Upload image
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="candidateType">Candidate Type</label>
-                                                                    </br><input type="radio" name="candidateType" id="canParty" value="Party Based" checked>Party Based</br>
-                                                                        <input type="radio" name="candidateType" id="canPrivate" value="Private">Private
-                                                                            </div>
-                                                                            <div class="form-group">
-                                                                                <label for="partyCode">Party Code/ Candidate Code<em>*</em></label>
-                                                                                <input type="text" class="form-control" name="canCode" id="canCode" placeholder="party/candidate code"/>
-                                                                            </div>
+                                                    <div class="form-group">
+                                                        <label for="uploadLogo">Party Logo<em>*</em></label>
+                                                        <label class="btn btn-info" for="my-file-selector">
+                                                            <input id="my-file-selector" type="file" name="pht" id="pht" style="display:none;">
+                                                                Upload image
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="candidateType">Candidate Type</label>
+                                                        </br><input type="radio" name="candidateType" id="canParty" value="Party Based" checked>Party Based</br>
+                                                            <input type="radio" name="candidateType" id="canPrivate" value="Private">Private
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="partyCode">Party Code/ Candidate Code<em>*</em></label>
+                                                        <input type="text" class="form-control" name="canCode" id="canCode" placeholder="party/candidate code"/>
+                                                    </div>
 
-                                                                            <div class="form-group">
-                                                                                <label for="remark">Promises</label>
-                                                                                <textarea class="form-control"  name="promise" id="promise" placeholder="any promises ..."></textarea>
-                                                                            </div>
-                                                                            <button type="submit" name="submit_candidate" id="submit_candidate" class="btn btn-primary">Submit</button><button type="reset" class="btn btn-default">Reset</button>
-                                                                            </form>
-                                                                            </div>
-                                                                            </div>
-                                                                            </div>
-                                                                            </div>
+                                                    <div class="form-group">
+                                                        <label for="remark">Promises</label>
+                                                        <textarea class="form-control"  name="promise" id="promise" placeholder="any promises ..."></textarea>
+                                                    </div>
+                                                    <button type="submit" name="submit_candidate" id="submit_candidate" class="btn btn-primary">Submit</button><button type="reset" class="btn btn-default">Reset</button>
+                                                    </form>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
 
                                                                             </div>
                                                                             </div>

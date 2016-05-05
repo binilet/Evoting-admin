@@ -77,7 +77,7 @@ class register_candidate {
             echo "</br> promise: ".$cpromise;
             
             $query = "insert into evoting_can(ID,FIRST_NAME,LAST_NAME,GENDER,DOB,BIRTH_PLACE,EDUCATION_LEVEL,PHOTO_PATH,CAN_TYPE,
-                RUNNING_CODE,PROMISES) VALUES(0,'$cfname','$clname','$cgender','$cdob AS DATE','$cbirthplace','$cedulev','$cphoto','$ctype',
+                PARTY_CODE,PROMISES) VALUES(0,'$cfname','$clname','$cgender','$cdob AS DATE','$cbirthplace','$cedulev','$cphoto','$ctype',
                     '$ccode','$cpromise')";
             echo "<h1>$query</h1>";
             

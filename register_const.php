@@ -45,16 +45,28 @@ class register_const {
         $cname = $this->_constName;
         $cregion = $this->_constRegion;
         $cNoPs = $this->_noOfPs;
-        $cListPs = $this->_listOfPs;
+       
         $cremarks = $this->_remarks;
         
-        $query = "INSERT INTO evoting_const(ID,CONST_CODE,CON_NAME,REGION,NO_OF_PS,LIST_OF_PS,REMARKS) "
-                . "VALUES(0,'$ccode','$cname','$cregion',$cNoPs,'$cListPs','$cremarks')";
+        $query = "INSERT INTO evoting_const(ID,CONST_CODE,CON_NAME,REGION,NO_OF_PS,REMARKS) "
+                . "VALUES(0,'$ccode','$cname','$cregion',$cNoPs,'$cremarks')";
         $result = mysqli_query($this->connection,$query) or die ("Invalid Query:53 ". mysqli_error($this->connection));
         if($result){
             echo "<h1>Query Executed. list of ps: ". $cListPs ."</h1>";
         }
+        $this->const_ps();
         header("Location: http://localhost/Evoting-admin/register.html");
+    }
+    
+    //this function will handle the one to many relationship between pollstations and constituencies
+    public function const_ps(){
+         $cListPs = $this->_listOfPs;
+         $ccode = $this->_constCode;
+         $myarray = explode(' ', $cListPs);
+         foreach($myarray as $val){
+            $query = "insert into const_ps(id,const_code,ps_code) values(0,'$ccode','$val')";
+            mysqli_query($this->connection, $query) or die("Invalid Query: 105". mysqli_error($this->connection));
+        }
     }
 }
 $reg_const = new register_const();
