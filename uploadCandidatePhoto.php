@@ -17,14 +17,14 @@ error_reporting(E_ALL);
 class uploadCandidatePhoto {
     //put your code here
     public function upload_can_photo() {
-        $target_dir = "pht/";
-        $target_file = $target_dir . basename($_FILES["pht"]["name"]);
+        $target_dir = "upload/";
+        $target_file = $target_dir . basename($_FILES['pht']['name']);
         $uploadOk = 1;
         echo "<h1 style='color:red;'>" . $target_file . "</h1>";
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-        $check = getimagesize($_FILES["pht"]["tmp_name"]);
+        $check = getimagesize($_FILES['pht']['tmp_name']);
         if ($check !== false) {
-            echo "file is an image - " . $check["mime"] . ".";
+            echo "file is an image - " . $check['mime'] . ".";
             $uploadOk = 1;
         } else {
             echo "File is not an image";
@@ -37,7 +37,7 @@ class uploadCandidatePhoto {
             $uploadOk = 0;
         }
         //check file size
-        if ($_FILES["pht"]["size"] > 900000) {
+        if ($_FILES['pht']['size'] > 900000) {
             echo "file is too big needs to be <= 900kb";
             $uploadOk = 0;
         }
@@ -52,12 +52,12 @@ class uploadCandidatePhoto {
             echo "sorry your file wasn't uploaded";
         } else {
             //try uploading the file
-            if (move_uploaded_file($_FILES["pht"]["tmp_name"], $target_file)) {
-                echo "the File " . basename($_FILES["pht"]["name"]) . "has been uploaded.";
+            if (move_uploaded_file($_FILES['pht']['tmp_name'], $target_file)) {
+                echo "the File " . basename($_FILES['pht']['name']) . "has been uploaded.";
             } else {
                 echo "there was an error uploading your file.";
             }
         }
-        echo "<img src='upload/" . basename($_FILES["pht"]["name"]) . "' alt='some image' width='30' height='30' />";
+        echo "<img src='upload/" . basename($_FILES['pht']['name']) . "' alt='some image' width='30' height='30' />";
     }
 }
