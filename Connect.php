@@ -17,7 +17,7 @@
 //this comment is added from the lab computer inorder to check the synchronization ability of netbeans git service
 //this is git finall test comment
 class Connect {
-    //put your code here
+    //put your code here-
     protected $connection;   
     public function connect(){
         if(!isset(self::$connection)){
