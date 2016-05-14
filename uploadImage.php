@@ -54,6 +54,8 @@ class uploadImage {
             //try uploading the file
             if (move_uploaded_file($_FILES["partyLogo"]["tmp_name"], $target_file)) {
                 echo "the File " . basename($_FILES["partyLogo"]["name"]) . "has been uploaded.";
+                
+                
             } else {
                 echo "there was an error uploading your file.";
             }
