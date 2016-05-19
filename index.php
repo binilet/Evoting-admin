@@ -109,8 +109,8 @@ font-size: 16px;">  &nbsp; <a href="logout.php" class="btn btn-danger square-btn
                     <i class="fa fa-envelope-o"></i>
                 </span>
                 <div class="text-box" >
-                    <p class="main-text">120 New</p>
-                    <p class="text-muted">Messages</p>
+                    <p class="main-text">Results</p>
+                    <p class="text-muted">OverAll</p>
                 </div>
              </div>
 		     </div>
@@ -484,15 +484,30 @@ font-size: 16px;">  &nbsp; <a href="logout.php" class="btn btn-danger square-btn
                     <div class="col-md-6 col-sm-12 col-xs-12">
                          <div class="panel panel-default">
                         <div class="panel-heading">
-                           Label Examples
+                           Register PollStation Administrators
                         </div>
                         <div class="panel-body">
-                            <span class="label label-default">Default</span>
-<span class="label label-primary">Primary</span>
-<span class="label label-success">Success</span>
-<span class="label label-info">Info</span>
-<span class="label label-warning">Warning</span>
-<span class="label label-danger">Danger</span>
+                           <!-- <span class="label label-default">Default</span>
+                            <span class="label label-primary">Primary</span>
+                            <span class="label label-success">Success</span>
+                            <span class="label label-info">Info</span>
+                            <span class="label label-warning">Warning</span>
+                            <span class="label label-danger">Danger</span>-->
+                            <form action="registerAdmin.php" method="post">
+                                <div class="form-group">
+                                    <label for="psCodeField">PollStation Code</label>
+                                    <input type="text" class="form-control" name="pscode" id="pscode" placeholder="PollStation Code" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="usernNameField">User Name</label>
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="User Name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordField">PollStation Code</label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                                </div>
+                                <button type="submit" name="submit" class="btn btn-primary">Done</button>
+                            </form>
                         </div>
                     </div>
                          

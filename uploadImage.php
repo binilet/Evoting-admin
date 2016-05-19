@@ -18,6 +18,9 @@ class uploadImage {
     //put your code here
     public function uploadLogo() {
         $target_dir = "upload/";
+        $fileType = $_FILES["partyLogo"]["type"];
+        $getFileExt = explode(".", $fileType);
+        $fileExt = $getFileExt[1];
         $target_file = $target_dir . basename($_FILES["partyLogo"]["name"]);
         $uploadOk = 1;
         echo "<h1 style='color:red;'>" . $target_file . "</h1>";
@@ -59,6 +62,13 @@ class uploadImage {
             } else {
                 echo "there was an error uploading your file.";
             }
+            include_once("ResizeImage.php");
+            $target = "upload/$target_file";
+            $resized_file = "upload/resized_$target_file";
+            $wmax = 700;
+            $hmax = 600;
+            $resize = new ResizeImage();
+            $resize->ak_img_resize($target,$resized_file,$wmax,$hmax,$fileExt);
         }
         echo "<img src='upload/" . basename($_FILES["partyLogo"]["name"]) . "' alt='some image' width='30' height='30' />";
     }

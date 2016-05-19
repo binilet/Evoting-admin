@@ -26,6 +26,6 @@ class ResizeImage {
 		$tci = imagecreatetruecolor($w,$h);
 		imagecopyresampled($tci,$img,0,0,0,0,$w,$h,$w_orig,$h_orig);
 		imagejpeg($tci,$newcopy,80);
-		unlink($target);
+		//unlink($target);
 	}
 }
