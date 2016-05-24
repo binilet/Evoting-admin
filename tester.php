@@ -1,6 +1,86 @@
 <?php
-include "Connect.php";
-    error_reporting(E_ALL);
+
+/*$file = array(file_get_contents('results/testps1.json'));
+$file1 = array(file_get_contents('results/testps2.json'));
+$tostring = implode(',',$file);
+$decoded = json_decode($tostring,true);
+
+$tostring1 = implode(',',$file1);
+$decoded1 = json_decode($tostring1,true);*/
+include 'Connect.php';
+$d = new Connect();
+$con = $d->connect();
+$hand = opendir('./results/');
+if($hand){
+    while(false !== ($entry = readdir($hand))){
+        if($entry != "." && $entry != ".."){
+            /*echo "<br />file name is: ". $entry."<br/>";
+            echo "************<br/>";*/
+            
+            $file = array(file_get_contents('./results/'.$entry));
+            $tostring = implode(',',$file);
+            $decoded = json_decode($tostring,true);
+           
+             foreach($decoded as $pdetail){
+                 $vtcount = $pdetail['vote_count'];
+                 $pname = $pdetail['party_name'];
+                 $concode = $pdetail['const_code'];
+                 
+                 $query = "select * from const_result where party_name = '".$pname."' and const_code = '".$concode."'";
+                 $result = mysqli_query($con, $query) or die("Invalid query tester.php 32: ".mysql_error($con));
+                 if(mysqli_affected_rows($con) == 0){
+                     $query = "insert into const_result values(0,'".$pname."','".$concode."',".$vtcount.")";
+                     mysqli_query($con, $query);
+                 }else{
+                     $query = "UPDATE const_result "
+                        . "SET result = result + $vtcount"
+                        . " WHERE party_name = '$pname' AND const_code = '$concode'";
+                         }
+                         mysqli_query($con, $query) or die ("Invalid query: update_query ".mysqli_error($con));
+                         if(mysqli_affected_rows($con) >=1 ){
+                             echo "result updated";
+                         }else{
+                             echo "Result not updated";
+                         }
+                             
+             }
+             
+             
+            }
+    }
+}
+/*
+echo "</br>************************************************************<br>";
+echo $decoded[1]['party_name'];
+echo "&nbsp";
+$output = "<ul>";
+foreach($decoded as $pdetail){
+    $output.= "<h4>".$pdetail['party_name']."</h4>";
+    $output.="<li>".$pdetail['const_code']."</li>";
+    $output.="<li>".$pdetail['ps_code']."</li>";
+    $output.="<li>".$pdetail['vote_count']."</li>";
+}
+$output.= "</ul>";
+echo $output;
+echo "</br>************************************************************<br>";
+echo "</br>************************************************************<br>";
+echo $decoded1[1]['party_name'];
+echo "&nbsp";
+$output = "<ul>";
+foreach($decoded1 as $pdetail){
+    $output.= "<h4>".$pdetail['party_name']."</h4>";
+    $output.="<li>".$pdetail['const_code']."</li>";
+    $output.="<li>".$pdetail['ps_code']."</li>";
+    $output.="<li>".$pdetail['vote_count']."</li>";
+}
+$output.= "</ul>";
+echo $output;
+echo "</br>(((((((((((())))))))))))))))))))</br>";
+echo $tostring1;
+echo "</br>((((((((((((((((()))))))))))))))))</br>";
+echo "</br>************************************************************<br>";*/
+//include "Connect.php";
+   /* error_reporting(E_ALL);
     if(isset($_POST['submit'])){
         $name = filter_input(INPUT_POST,'name');
         echo "name is: ". $name;
@@ -58,6 +138,62 @@ include "Connect.php";
         echo "<h1>$vals</h1>";
     }
     //comment
+    echo "********************************************************************************<br>";
+    $localip = gethostbyname(gethostname());
+    echo 'the ip address of current system is: '.$_SERVER['SERVER_ADDR'];
+    echo 'the ip address of current system: '.$localip;
+    
+    
+    
+    $allData = array();
+    $count = 0;
+    $handle = opendir('./results/');
+    if($handle){
+        while(false !== ($entry = readdir($handle))){
+            if($entry != "." && $entry !=".."){
+                echo $entry."<br />";
+                $sourcefile = array(file_get_contents('results/'.$entry));
+                $imploded = implode(',',$sourcefile);
+                $data = json_decode($imploded,true);
+                /*if(!$data != null){
+                    $allData = array_merge($allData,$data);
+                    print_r($allData);
+                }else{
+                    echo "envalid json";
+                }*/
+          /*   $allData = array_merge($allData,$data);
+             print_r ($data);
+             
+            }
+            echo "(((((((((((((())))))))))))))))))";
+            print_r ($allData);
+            
+        }
+        closedir($handle);
+        echo "<br /><br /></br> !!!!!!!<br/><br/><br/>";
+        print_r($allData);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     ?>
 <!DOCTYPE html>
 <!--
@@ -139,4 +275,4 @@ and open the template in the editor.
         </script>
     </body>
 </html>
-    
+    */

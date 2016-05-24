@@ -61,7 +61,7 @@ if (isset($_SESSION['login']) !== true) {
                             <a  href="View.html"><i class="fa fa-table fa"></i> View Data</a>
                         </li>
                         <li  >
-                            <a  href="statistics.html"><i class="fa fa-edit fa"></i> Stats </a>
+                            <a  href="form.php"><i class="fa fa-edit fa"></i> Results </a>
                         </li>
 
 

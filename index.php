@@ -65,7 +65,7 @@ font-size: 16px;">  &nbsp; <a href="logout.php" class="btn btn-danger square-btn
                         <a  href="view.html"><i class="fa fa-table fa"></i> View Data</a>
                     </li>
                     <li  >
-                        <a  href="form.html"><i class="fa fa-edit fa"></i> Stats </a>
+                        <a  href="form.php"><i class="fa fa-edit fa"></i> Results </a>
                     </li>				
 					
 					                   
