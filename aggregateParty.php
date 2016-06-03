@@ -1,5 +1,4 @@
 <?php
-
 include 'Connect.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,11 +7,11 @@ include 'Connect.php';
  */
 
 /**
- * Description of aggregate
+ * Description of aggregateParty
  *
  * @author BiNI
  */
-class aggregate {
+class aggregateParty {
 
     //put your code here
     protected $connection;
@@ -22,8 +21,8 @@ class aggregate {
         $this->connection = $con->connect();
     }
 
-    public function agg() {
-        if (isset($_POST['aggregate'])) {
+    public function aggTotal() {
+        if (isset($_POST['tally'])) {
             $this->truncate();
             $hand = opendir('./results/');
             if ($hand) {
@@ -32,21 +31,20 @@ class aggregate {
                         $file = array(file_get_contents('./results/' . $entry));
                         $tostring = implode(',', $file);
                         $decoded = json_decode($tostring, true);
-
                         foreach ($decoded as $pdetail) {
+
                             $vtcount = $pdetail['vote_count'];
                             $pname = $pdetail['party_name'];
-                            $concode = $pdetail['const_code'];
 
-                            $query = "select * from const_result where party_name = '" . $pname . "' and const_code = '" . $concode . "'";
-                            $result = mysqli_query($this->connection, $query) or die("Invalid query tester.php 32: " . mysql_error($this->connection));
+                            $query = "select * from total_result where party_name = '$pname'";
+                            $result = mysqli_query($this->connection, $query) or die("Invalid query tester.php 32: " . mysqli_error($this->connection));
                             if (mysqli_affected_rows($this->connection) == 0) {
-                                $query = "insert into const_result values(0,'" . $pname . "','" . $concode . "'," . $vtcount . ")";
-                                mysqli_query($this->connection, $query);
+                                $query = "insert into total_result values(0,'" . $pname . "'," . $vtcount . ")";
+                                mysqli_query($this->connection, $query) or die("Invalid query: " . mysqli_error($this->connection));
                             } else {
-                                $query = "UPDATE const_result "
+                                $query = "UPDATE total_result "
                                         . "SET result = result + $vtcount"
-                                        . " WHERE party_name = '$pname' AND const_code = '$concode'";
+                                        . " WHERE party_name = '$pname'";
                             }
                             mysqli_query($this->connection, $query) or die("Invalid query: update_query " . mysqli_error($this->connection));
                             if (mysqli_affected_rows($this->connection) >= 1) {
@@ -59,17 +57,14 @@ class aggregate {
                 }
             }
             header("Location: http://localhost/evoting-admin/form.php");
-        } else {
-            echo "Error not set";
         }
     }
-    
-    public function truncate(){
-        $query = "truncate table const_result";
-        mysqli_query($this->connection,$query);
+
+    public function truncate() {
+        $query = "truncate table total_result";
+        mysqli_query($this->connection, $query);
     }
 
 }
-
-$ag = new aggregate();
-$ag->agg();
+$ap = new aggregateParty();
+$ap->aggTotal();

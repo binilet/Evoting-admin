@@ -1,54 +1,63 @@
 <?php
 
-/*$file = array(file_get_contents('results/testps1.json'));
-$file1 = array(file_get_contents('results/testps2.json'));
-$tostring = implode(',',$file);
-$decoded = json_decode($tostring,true);
-
-$tostring1 = implode(',',$file1);
-$decoded1 = json_decode($tostring1,true);*/
-include 'Connect.php';
-$d = new Connect();
-$con = $d->connect();
-$hand = opendir('./results/');
-if($hand){
-    while(false !== ($entry = readdir($hand))){
-        if($entry != "." && $entry != ".."){
-            /*echo "<br />file name is: ". $entry."<br/>";
-            echo "************<br/>";*/
-            
-            $file = array(file_get_contents('./results/'.$entry));
-            $tostring = implode(',',$file);
-            $decoded = json_decode($tostring,true);
-           
-             foreach($decoded as $pdetail){
-                 $vtcount = $pdetail['vote_count'];
-                 $pname = $pdetail['party_name'];
-                 $concode = $pdetail['const_code'];
-                 
-                 $query = "select * from const_result where party_name = '".$pname."' and const_code = '".$concode."'";
-                 $result = mysqli_query($con, $query) or die("Invalid query tester.php 32: ".mysql_error($con));
-                 if(mysqli_affected_rows($con) == 0){
-                     $query = "insert into const_result values(0,'".$pname."','".$concode."',".$vtcount.")";
-                     mysqli_query($con, $query);
-                 }else{
-                     $query = "UPDATE const_result "
-                        . "SET result = result + $vtcount"
-                        . " WHERE party_name = '$pname' AND const_code = '$concode'";
-                         }
-                         mysqli_query($con, $query) or die ("Invalid query: update_query ".mysqli_error($con));
-                         if(mysqli_affected_rows($con) >=1 ){
-                             echo "result updated";
-                         }else{
-                             echo "Result not updated";
-                         }
-                             
-             }
-             
-             
-            }
-    }
+echo "last access day: ";
+$fileaccess = fileatime('./tester.php');
+$when = new DateTime('@'.$fileaccess);
+$when->setTimezone(new DateTimeZone('America/Los_Angeles'));
+$parts = explode('/',$when->format('Y/m/d/H/i/s'));
+foreach($parts as $r){
+    echo "$r-";
 }
+//
+///*$file = array(file_get_contents('results/testps1.json'));
+//$file1 = array(file_get_contents('results/testps2.json'));
+//$tostring = implode(',',$file);
+//$decoded = json_decode($tostring,true);
+//
+//$tostring1 = implode(',',$file1);
+//$decoded1 = json_decode($tostring1,true);*/
+//include 'Connect.php';
+//$d = new Connect();
+//$con = $d->connect();
+//$hand = opendir('./results/');
+//if($hand){
+//    while(false !== ($entry = readdir($hand))){
+//        if($entry != "." && $entry != ".."){
+//            /*echo "<br />file name is: ". $entry."<br/>";
+//            echo "************<br/>";*/
+//            
+//            $file = array(file_get_contents('./results/'.$entry));
+//            $tostring = implode(',',$file);
+//            $decoded = json_decode($tostring,true);
+//           
+//             foreach($decoded as $pdetail){
+//                 $vtcount = $pdetail['vote_count'];
+//                 $pname = $pdetail['party_name'];
+//                 $concode = $pdetail['const_code'];
+//                 
+//                 $query = "select * from const_result where party_name = '".$pname."' and const_code = '".$concode."'";
+//                 $result = mysqli_query($con, $query) or die("Invalid query tester.php 32: ".mysql_error($con));
+//                 if(mysqli_affected_rows($con) == 0){
+//                     $query = "insert into const_result values(0,'".$pname."','".$concode."',".$vtcount.")";
+//                     mysqli_query($con, $query);
+//                 }else{
+//                     $query = "UPDATE const_result "
+//                        . "SET result = result + $vtcount"
+//                        . " WHERE party_name = '$pname' AND const_code = '$concode'";
+//                         }
+//                         mysqli_query($con, $query) or die ("Invalid query: update_query ".mysqli_error($con));
+//                         if(mysqli_affected_rows($con) >=1 ){
+//                             echo "result updated";
+//                         }else{
+//                             echo "Result not updated";
+//                         }
+//                             
+//             }
+//             
+//             
+//            }
+//    }
+//}
 /*
 echo "</br>************************************************************<br>";
 echo $decoded[1]['party_name'];

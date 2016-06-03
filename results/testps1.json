@@ -1,3 +1,1 @@
-[{"id":"7","party_name":"eprdf","const_code":"testcon1","ps_code":"testps1","vote_count":"2"},
-    {"id":"8","party_name":"ginbot 7","const_code":"testcon1","ps_code":"testps1","vote_count":"2"},
-    {"id":"10","party_name":"blue","const_code":"testcon1","ps_code":"testps1","vote_count":"3"}]
+[{"id":"1","party_name":"ict","const_code":"testcon1","ps_code":"testps1","vote_count":"1"},{"id":"2","party_name":"ginbot 7","const_code":"testcon1","ps_code":"testps1","vote_count":"1"},{"id":"3","party_name":"eprdf","const_code":"testcon1","ps_code":"testps1","vote_count":"1"},{"id":"4","party_name":"blue","const_code":"testcon1","ps_code":"testps1","vote_count":"1"}]

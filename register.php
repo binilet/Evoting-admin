@@ -70,7 +70,7 @@ if (isset($_SESSION['login']) !== true) {
                             <a href="#"><i class="fa fa-sitemap fa"></i> Information Medium<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Add Information</a>
+                                    <a href="addInfo.php">Add Information</a>
                                 </li>
                                 <li>
                                     <a href="#">Edit Information</a>
@@ -154,10 +154,10 @@ if (isset($_SESSION['login']) !== true) {
                                                         <label for="const">List of Constituencies the party runs<em>*</em></label>
                                                         <textarea class="form-control" name="constList" id="listConst" placeholder="use space to separate" ></textarea>
                                                     </div>
-                                                    <div class="form-group">
+                                                   <!-- <div class="form-group">
                                                         <label for="or">OR</label>
                                                     </div>
-                                                    <!--<div class="form-group">
+                                                    <div class="form-group">
                                                         <label class="btn btn-info" for="my-file-selector">
                                                             <input id="my-file-selector" type="file" name="listConstEx" style="display:none;">
                                                                 Upload an Excel file
@@ -167,10 +167,10 @@ if (isset($_SESSION['login']) !== true) {
                                                         <label for="ps">List of Poll Stations the party runs<em>*</em></label>
                                                         <textarea class="form-control" name="listOfPs" id="listPs" placeholder="use space to separate" ></textarea>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <!--<div class="form-group">
                                                         <label for="or">OR</label>
                                                     </div>
-                                                   <!-- <div class="form-group">
+                                                    <div class="form-group">
                                                         <label class="btn btn-info" for="my-file-selector">
                                                             <input id="my-file-selector" type="file" name="listPsEx" style="display:none;">
                                                                 Upload an Excel file
